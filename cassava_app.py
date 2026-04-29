@@ -21,7 +21,7 @@ import io
 from huggingface_hub import hf_hub_download
 
 # ── Hugging Face model repo ────────────────────────────────────────────────────
-HF_REPO_ID = "EdwardEbaju-Ed4/cassava-disease-models"
+HF_REPO_ID = "Ebaju-Ed4/cassava-disease-models"
 
 # ── Download models from HF Hub if not already cached ─────────────────────────
 @st.cache_resource(show_spinner="Downloading models from Hugging Face Hub...")
