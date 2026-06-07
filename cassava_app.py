@@ -5,11 +5,13 @@ Run with:
     streamlit run cassava_app.py
 
 Requirements:
-    pip install streamlit tensorflow pillow plotly numpy huggingface_hub
+    pip install streamlit tensorflow pillow plotly numpy boto3
 
-Models are downloaded automatically from Hugging Face Hub:
-    https://huggingface.co/EdwardEbaju-Ed4/cassava-disease-models
+Models are downloaded automatically from AWS S3:
+    s3://cassava-disease-models/
 ============================================================
+Author : Weyanga Richard Shadrack
+Student: 2400720749
 """
 
 import streamlit as st
@@ -18,26 +20,32 @@ from PIL import Image
 import plotly.graph_objects as go
 import os
 import io
-from huggingface_hub import hf_hub_download
+import boto3
+import tempfile
 
-# ── Hugging Face model repo ────────────────────────────────────────────────────
-HF_REPO_ID = "Ebaju-Ed4/cassava-disease-models"
+# ── AWS S3 config ──────────────────────────────────────────────────────────────
+S3_BUCKET = "cassava-disease-models"
+S3_REGION = "eu-north-1"
 
-# ── Download models from HF Hub if not already cached ─────────────────────────
-@st.cache_resource(show_spinner="Downloading models from Hugging Face Hub...")
+# ── Download models from S3 if not already cached ─────────────────────────────
+@st.cache_resource(show_spinner="Downloading models from AWS S3...")
 def download_models():
+    s3 = boto3.client(
+        "s3",
+        region_name=S3_REGION,
+        aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+        aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
+    )
     model_files = [
         "cassava_efficientnetb0_final.keras",
         "cassava_resnet50_final.keras",
         "cassava_mobilenetv2_final.h5",
     ]
     paths = {}
+    tmp_dir = tempfile.mkdtemp()
     for filename in model_files:
-        local_path = hf_hub_download(
-            repo_id=HF_REPO_ID,
-            filename=filename,
-            token=os.environ.get("HF_TOKEN"),  # optional for public repos
-        )
+        local_path = os.path.join(tmp_dir, filename)
+        s3.download_file(S3_BUCKET, filename, local_path)
         paths[filename] = local_path
     return paths
 
@@ -283,7 +291,7 @@ DISEASE_INFO = {
     }
 }
 
-# ── Model paths (resolved from HF Hub cache) ──────────────────────────────────
+# ── Model paths (resolved from AWS S3 cache) ──────────────────────────────────
 MODEL_OPTIONS = {
     "EfficientNetB0": MODEL_PATHS["cassava_efficientnetb0_final.keras"],
     "ResNet50":       MODEL_PATHS["cassava_resnet50_final.keras"],
@@ -379,7 +387,11 @@ with st.sidebar:
             st.caption(f"Severity: {info['severity']}")
     st.markdown("---")
     st.caption("Cassava Leaf Disease Detection System")
-    st.caption("Powered by Deep Learning")
+    st.caption("Powered by Deep Learning & AWS S3")
+    st.markdown("---")
+    st.markdown("**Author**")
+    st.caption("Weyanga Richard Shadrack")
+    st.caption("Student No: 2400720749")
 
 # ── Main area ──────────────────────────────────────────────────────────────────
 st.markdown('<div class="main-header">🌿 Cassava Disease<br>Detector</div>', unsafe_allow_html=True)
