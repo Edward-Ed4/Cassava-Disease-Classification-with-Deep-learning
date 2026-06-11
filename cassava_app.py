@@ -10,8 +10,8 @@ Requirements:
 Models are downloaded automatically from AWS S3:
     s3://cassava-disease-models/
 ============================================================
-Author : Weyanga Richard Shadrack
-Student: 2400720749
+Author : Ebaju Edward
+Student: 2400723929
 """
 
 import streamlit as st
@@ -390,8 +390,8 @@ with st.sidebar:
     st.caption("Powered by Deep Learning & AWS S3")
     st.markdown("---")
     st.markdown("**Author**")
-    st.caption("Weyanga Richard Shadrack")
-    st.caption("Student No: 2400720749")
+    st.caption("Ebaju Edward")
+    st.caption("Student No: 2400723929")
 
 # ── Main area ──────────────────────────────────────────────────────────────────
 st.markdown('<div class="main-header">🌿 Cassava Disease<br>Detector</div>', unsafe_allow_html=True)

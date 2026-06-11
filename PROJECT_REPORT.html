@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        margin: 2.5cm 2.5cm 2.5cm 2.5cm;
+        color: #000;
+        line-height: 1.5;
+      }
+      .center {
+        text-align: center;
+      }
+      .university {
+        font-size: 14pt;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .college {
+        font-size: 12pt;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .department {
+        font-size: 12pt;
+        text-transform: uppercase;
+      }
+      .course {
+        font-size: 13pt;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      .report-title {
+        font-size: 16pt;
+        font-weight: bold;
+        margin-top: 30px;
+      }
+      .project-title {
+        font-size: 14pt;
+        font-weight: bold;
+      }
+      .subtitle {
+        font-size: 12pt;
+        font-style: italic;
+      }
+      hr {
+        border: 1px solid #000;
+        margin: 20px 0;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 15px 0;
+      }
+      th,
+      td {
+        border: 1px solid #000;
+        padding: 8px 12px;
+        text-align: left;
+        font-size: 11pt;
+      }
+      th {
+        background-color: #f0f0f0;
+        font-weight: bold;
+      }
+      h1 {
+        font-size: 14pt;
+        font-weight: bold;
+        margin-top: 30px;
+        border-bottom: 1px solid #000;
+        padding-bottom: 4px;
+      }
+      h2 {
+        font-size: 13pt;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      h3 {
+        font-size: 12pt;
+        font-weight: bold;
+        margin-top: 15px;
+      }
+      pre,
+      code {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 10pt;
+        background: #f5f5f5;
+        padding: 10px;
+        display: block;
+        margin: 10px 0;
+        border-left: 3px solid #555;
+        white-space: pre-wrap;
+      }
+      ul,
+      ol {
+        margin: 8px 0 8px 25px;
+      }
+      li {
+        margin-bottom: 4px;
+      }
+      .info-table td {
+        border: 1px solid #000;
+        padding: 8px 12px;
+      }
+      .info-table td:first-child {
+        font-weight: bold;
+        width: 200px;
+      }
+      .footer {
+        text-align: center;
+        font-size: 10pt;
+        margin-top: 40px;
+        border-top: 1px solid #000;
+        padding-top: 10px;
+      }
+      .toc {
+        margin: 20px 0;
+      }
+      .toc p {
+        margin: 4px 0;
+      }
+      .toc .indent {
+        margin-left: 25px;
+      }
+      strong {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <div class="center">
+      <p class="university">Makerere University</p>
+      <p class="college">College of Computing and Information Technology</p>
+      <p class="department">Department of Computer Science</p>
+      <br />
+      <p class="course">☁ Cloud Computing</p>
+      <hr />
+      <p class="report-title">CLOUD COMPUTING PROJECT REPORT</p>
+      <p class="project-title">Cassava Leaf Disease Detection</p>
+      <p class="subtitle">
+        A Deep Learning Web Application Deployed on AWS Cloud
+      </p>
+      <hr />
+    </div>
+
+    <!-- STUDENT INFO -->
+    <table class="info-table" style="width: 60%; margin: 30px auto">
+      <tr>
+        <td>Student Name</td>
+        <td>Ebaju Edward</td>
+      </tr>
+      <tr>
+        <td>Student Number</td>
+        <td>2400723929</td>
+      </tr>
+      <tr>
+        <td>GitHub Repository</td>
+        <td>
+          github.com/Edward-Ed4/Cassava-Disease-Classification-with-Deep-learning
+        </td>
+      </tr>
+      <tr>
+        <td>Live Application</td>
+        <td>
+          https://cassava-disease-classification-with-deep-learning-t7jyapv6cayz.streamlit.app
+        </td>
+      </tr>
+    </table>
+
+    <hr />
+
+    <!-- TABLE OF CONTENTS -->
+    <h1>Table of Contents</h1>
+    <div class="toc">
+      <p>
+        1. Introduction
+        .............................................................................................................
+        3
+      </p>
+      <p>
+        2. Project Objectives
+        .....................................................................................................
+        3
+      </p>
+      <p>
+        3. Cloud Architecture
+        ...................................................................................................
+        3
+      </p>
+      <p class="indent">
+        3.1 Architecture Summary
+        ...................................................................................
+        3
+      </p>
+      <p class="indent">
+        3.2 Architecture Layer Table
+        ...............................................................................
+        4
+      </p>
+      <p>
+        4. Services Used
+        ............................................................................................................
+        4
+      </p>
+      <p class="indent">
+        4.1 Amazon S3 (Simple Storage Service)
+        .......................................................... 4
+      </p>
+      <p class="indent">
+        4.2 AWS IAM (Identity and Access Management)
+        ........................................... 5
+      </p>
+      <p class="indent">
+        4.3 Streamlit Cloud
+        .............................................................................................
+        5
+      </p>
+      <p class="indent">
+        4.4 GitHub
+        ..........................................................................................................
+        5
+      </p>
+      <p>
+        5. Application Features
+        ................................................................................................
+        6
+      </p>
+      <p>
+        6. Implementation
+        .........................................................................................................
+        6
+      </p>
+      <p class="indent">
+        6.1 Model Training
+        ..............................................................................................
+        6
+      </p>
+      <p class="indent">
+        6.2 Model Storage on AWS S3
+        ............................................................................
+        7
+      </p>
+      <p class="indent">
+        6.3 Application (Streamlit)
+        ..................................................................................
+        7
+      </p>
+      <p class="indent">
+        6.4 Security
+        .........................................................................................................
+        8
+      </p>
+      <p class="indent">
+        6.5 Source Code
+        ..................................................................................................
+        8
+      </p>
+      <p>
+        7. Deployment Process
+        .................................................................................................
+        8
+      </p>
+      <p>
+        8. Cloud Computing Concepts Demonstrated
+        ............................................................. 9
+      </p>
+      <p>
+        9. Challenges Encountered
+        ..........................................................................................
+        9
+      </p>
+      <p class="indent">
+        9.1 Python Version Incompatibility
+        ..................................................................... 9
+      </p>
+      <p class="indent">
+        9.2 Model File Size Exceeding GitHub Limits
+        .................................................. 10
+      </p>
+      <p class="indent">
+        9.3 AWS Credentials Not Reaching the App
+        .................................................... 10
+      </p>
+      <p class="indent">
+        9.4 Incorrect Hugging Face Repository ID
+        ....................................................... 10
+      </p>
+      <p>
+        10. Live Application
+        ....................................................................................................
+        10
+      </p>
+      <p>
+        11. Conclusion
+        .............................................................................................................
+        11
+      </p>
+      <p>
+        12. References
+        ..............................................................................................................
+        11
+      </p>
+    </div>
+
+    <hr />
+
+    <!-- 1. INTRODUCTION -->
+    <h1>1. Introduction</h1>
+    <p>
+      Cloud computing has transformed how machine learning applications are
+      built, deployed, and scaled. Instead of managing physical servers or
+      requiring users to install local software, developers can leverage cloud
+      platforms to host models and applications that are globally accessible,
+      highly scalable, and cost-effective.
+    </p>
+    <p>
+      This project demonstrates the practical application of cloud computing
+      concepts by training deep learning models for cassava leaf disease
+      detection and deploying them as a fully functional web application using
+      Amazon Web Services and Streamlit Cloud.
+    </p>
+    <p>
+      Cassava (<em>Manihot esculenta</em>) is a critical food crop across
+      Sub-Saharan Africa. Early and accurate detection of leaf diseases is
+      essential for protecting yields and food security. This project trains
+      three convolutional neural network models — EfficientNetB0, ResNet50, and
+      MobileNetV2 — to classify cassava leaf images into four disease categories
+      and deploys them as an interactive web application that supports both
+      image upload and live camera capture.
+    </p>
+    <p>
+      The trained models are stored on AWS S3 and downloaded automatically by
+      the application at startup, demonstrating a production-grade cloud ML
+      deployment pattern.
+    </p>
+
+    <!-- 2. OBJECTIVES -->
+    <h1>2. Project Objectives</h1>
+    <ul>
+      <li>
+        Design and deploy a cloud-native machine learning web application using
+        AWS services
+      </li>
+      <li>
+        Demonstrate the use of AWS S3 as a managed cloud object storage service
+        for ML model artifacts
+      </li>
+      <li>
+        Apply AWS IAM for secure, least-privilege programmatic access to cloud
+        resources
+      </li>
+      <li>
+        Host a publicly accessible web application on Streamlit Cloud with
+        automatic deployment via GitHub
+      </li>
+      <li>
+        Implement secure secrets management by storing AWS credentials as
+        environment variables
+      </li>
+      <li>
+        Train and compare three transfer learning models (EfficientNetB0,
+        ResNet50, MobileNetV2) for cassava disease classification
+      </li>
+      <li>
+        Apply cloud computing concepts including managed services, separation of
+        concerns, and continuous deployment
+      </li>
+    </ul>
+
+    <!-- 3. ARCHITECTURE -->
+    <h1>3. Cloud Architecture</h1>
+    <p>
+      The application follows a three-tier cloud architecture with complete
+      separation between code, compute, and data storage.
+    </p>
+
+    <h2>3.1 Architecture Summary</h2>
+    <pre>
+Developer pushes code
+        ↓
+GitHub (cloud source control + CI/CD trigger)
+        ↓  auto-deploy on every push to main branch
+Streamlit Cloud (cloud application hosting)
+        ↓  downloads models at startup via boto3 SDK
+AWS S3 — eu-north-1 Stockholm (cloud object storage)
+   ├── cassava_efficientnetb0_final.keras  (51 MB)
+   ├── cassava_resnet50_final.keras        (280 MB)
+   └── cassava_mobilenetv2_final.h5        (29 MB)
+</pre
+    >
+
+    <h2>3.2 Architecture Layer Table</h2>
+    <table>
+      <tr>
+        <th>Layer</th>
+        <th>Service</th>
+        <th>Role</th>
+      </tr>
+      <tr>
+        <td>Source Control</td>
+        <td>GitHub</td>
+        <td>Hosts application code and triggers automatic redeployment</td>
+      </tr>
+      <tr>
+        <td>Application Hosting</td>
+        <td>Streamlit Cloud</td>
+        <td>Runs the web application and serves it globally</td>
+      </tr>
+      <tr>
+        <td>Model Storage</td>
+        <td>AWS S3</td>
+        <td>Stores trained ML model files as cloud objects</td>
+      </tr>
+      <tr>
+        <td>Access Control</td>
+        <td>AWS IAM</td>
+        <td>Controls programmatic access to S3 with least-privilege policy</td>
+      </tr>
+      <tr>
+        <td>Secrets Management</td>
+        <td>Streamlit Secrets</td>
+        <td>Injects AWS credentials as environment variables at runtime</td>
+      </tr>
+    </table>
+
+    <!-- 4. SERVICES -->
+    <h1>4. Services Used</h1>
+
+    <h2>4.1 Amazon S3 (Simple Storage Service)</h2>
+    <p>
+      Amazon S3 is an object storage service that offers industry-leading
+      scalability, data availability, security, and performance. In this
+      project, S3 is used as a cloud ML artifact registry — storing the three
+      trained model files that are too large to commit to GitHub.
+    </p>
+
+    <p><strong>Bucket configuration:</strong></p>
+    <ul>
+      <li>Bucket name: <code>cassava-disease-models</code></li>
+      <li>Region: <code>eu-north-1</code> (Europe — Stockholm)</li>
+      <li>Access: Private (accessed programmatically via IAM credentials)</li>
+    </ul>
+
+    <p><strong>Objects stored:</strong></p>
+    <table>
+      <tr>
+        <th>File</th>
+        <th>Size</th>
+        <th>Description</th>
+      </tr>
+      <tr>
+        <td>cassava_efficientnetb0_final.keras</td>
+        <td>51 MB</td>
+        <td>Trained EfficientNetB0 model</td>
+      </tr>
+      <tr>
+        <td>cassava_resnet50_final.keras</td>
+        <td>280 MB</td>
+        <td>Trained ResNet50 model</td>
+      </tr>
+      <tr>
+        <td>cassava_mobilenetv2_final.h5</td>
+        <td>29 MB</td>
+        <td>Trained MobileNetV2 model</td>
+      </tr>
+    </table>
+
+    <p><strong>Key features used:</strong></p>
+    <ul>
+      <li>Object storage for large ML model files</li>
+      <li>Private bucket with IAM-controlled access</li>
+      <li>Regional storage in eu-north-1 for low latency</li>
+      <li>Programmatic access via the boto3 Python SDK</li>
+    </ul>
+    <p>
+      S3 was chosen because GitHub enforces a 100 MB file size limit, making it
+      unsuitable for storing large trained model files. S3 provides durable,
+      scalable, and cost-effective storage — the 360 MB of model files costs
+      approximately $0.01 per month.
+    </p>
+
+    <h2>4.2 AWS IAM (Identity and Access Management)</h2>
+    <p>
+      AWS IAM is used to securely control access to AWS services and resources.
+      A dedicated IAM user was created for the application following the
+      principle of least privilege.
+    </p>
+
+    <p><strong>IAM configuration:</strong></p>
+    <ul>
+      <li>IAM user: <code>cassava-app-user</code></li>
+      <li>Attached policy: <code>AmazonS3ReadOnlyAccess</code></li>
+      <li>
+        Access type: Programmatic access (access key ID + secret access key)
+      </li>
+    </ul>
+    <p>
+      The IAM user has read-only access to S3 and no other AWS permissions. This
+      means even if the credentials were compromised, an attacker could only
+      read from S3 — they could not write, delete, or access any other AWS
+      service.
+    </p>
+
+    <p><strong>Key features used:</strong></p>
+    <ul>
+      <li>Least-privilege access control</li>
+      <li>Programmatic access keys for application authentication</li>
+      <li>Policy-based permissions management</li>
+    </ul>
+
+    <h2>4.3 Streamlit Cloud</h2>
+    <p>
+      Streamlit Community Cloud is a free managed platform for deploying
+      Streamlit web applications. It hosts the application, manages the runtime
+      environment, and automatically redeploys when changes are pushed to
+      GitHub.
+    </p>
+
+    <p><strong>Configuration:</strong></p>
+    <ul>
+      <li>Python version: 3.11</li>
+      <li>Main file: cassava_app.py</li>
+      <li>Dependencies: requirements.txt</li>
+      <li>Secrets: AWS credentials injected as environment variables</li>
+    </ul>
+
+    <p><strong>Key features used:</strong></p>
+    <ul>
+      <li>Serverless application hosting — no server management required</li>
+      <li>Automatic redeployment on GitHub push</li>
+      <li>Secrets management for secure credential storage</li>
+      <li>Global accessibility via public URL</li>
+    </ul>
+
+    <h2>4.4 GitHub</h2>
+    <p>
+      GitHub serves as the source control and continuous deployment pipeline for
+      the project.
+    </p>
+    <p><strong>Key features used:</strong></p>
+    <ul>
+      <li>
+        Cloud-hosted version control for all source code, notebooks, and assets
+      </li>
+      <li>
+        Automatic deployment trigger — every push to the main branch triggers a
+        redeploy on Streamlit Cloud
+      </li>
+      <li>Public repository for open access to the project codebase</li>
+    </ul>
+
+    <!-- 5. FEATURES -->
+    <h1>5. Application Features</h1>
+    <ul>
+      <li>
+        <strong>Model selector</strong> — switch between EfficientNetB0,
+        ResNet50, and MobileNetV2 from the sidebar
+      </li>
+      <li>
+        <strong>Camera capture</strong> — take a live photo directly from the
+        device camera; camera closes automatically after capture
+      </li>
+      <li>
+        <strong>Image upload</strong> — upload one or more images from the
+        device
+      </li>
+      <li>
+        <strong>Disease prediction</strong> — predicted class with confidence
+        score displayed prominently
+      </li>
+      <li>
+        <strong>Severity rating</strong> — colour-coded severity level (None /
+        Moderate / High / Very High) per disease
+      </li>
+      <li>
+        <strong>Treatment advice</strong> — actionable, disease-specific
+        treatment recommendations
+      </li>
+      <li>
+        <strong>Probability chart</strong> — horizontal bar chart showing model
+        confidence across all four classes
+      </li>
+      <li>
+        <strong>Student identification</strong> — author name and student number
+        displayed in the sidebar
+      </li>
+    </ul>
+
+    <!-- 6. IMPLEMENTATION -->
+    <h1>6. Implementation</h1>
+
+    <h2>6.1 Model Training</h2>
+    <p>
+      Three models were trained using a two-phase transfer learning strategy on
+      a dataset of 9,726 cassava leaf images across four classes.
+    </p>
+
+    <p><strong>Dataset:</strong></p>
+    <table>
+      <tr>
+        <th>Property</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td>Total images</td>
+        <td>9,726</td>
+      </tr>
+      <tr>
+        <td>Classes</td>
+        <td>4</td>
+      </tr>
+      <tr>
+        <td>Split</td>
+        <td>80% train / 20% validation</td>
+      </tr>
+      <tr>
+        <td>Train images</td>
+        <td>7,780</td>
+      </tr>
+      <tr>
+        <td>Val images</td>
+        <td>1,946</td>
+      </tr>
+    </table>
+
+    <p><strong>Classes:</strong></p>
+    <ul>
+      <li>Cassava Brown Streak Disease (Very High severity)</li>
+      <li>Cassava Mosaic Disease (High severity)</li>
+      <li>Cassava Green Mottle (Moderate severity)</li>
+      <li>Healthy</li>
+    </ul>
+
+    <p><strong>Training phases:</strong></p>
+    <ul>
+      <li>
+        Phase 1 — Train only the classification head with the base model frozen
+      </li>
+      <li>
+        Phase 2 — Unfreeze the top 30–50% of the base model and fine-tune at a
+        lower learning rate
+      </li>
+    </ul>
+
+    <p><strong>Results:</strong></p>
+    <table>
+      <tr>
+        <th>Model</th>
+        <th>Phase 1 Val Accuracy</th>
+        <th>Phase 2 Val Accuracy</th>
+        <th>Val Loss</th>
+      </tr>
+      <tr>
+        <td>EfficientNetB0</td>
+        <td>68.55%</td>
+        <td>74.67%</td>
+        <td>0.778</td>
+      </tr>
+      <tr>
+        <td>MobileNetV2</td>
+        <td>65.26%</td>
+        <td>77.24%</td>
+        <td>0.745</td>
+      </tr>
+      <tr>
+        <td><strong>ResNet50</strong></td>
+        <td><strong>69.37%</strong></td>
+        <td><strong>81.50%</strong></td>
+        <td><strong>0.624</strong></td>
+      </tr>
+    </table>
+    <p>
+      ResNet50 achieved the best performance at 81.5% validation accuracy with
+      the lowest validation loss of 0.624.
+    </p>
+
+    <h2>6.2 Model Storage on AWS S3</h2>
+    <p>
+      After training, the three model files were uploaded to the S3 bucket
+      <code>cassava-disease-models</code> in eu-north-1. The application
+      downloads them at startup using the boto3 SDK:
+    </p>
+    <pre>
+s3 = boto3.client(
+    "s3",
+    region_name="eu-north-1",
+    aws_access_key_id=os.environ.get("AWS_ACCESS_KEY_ID"),
+    aws_secret_access_key=os.environ.get("AWS_SECRET_ACCESS_KEY"),
+)
+s3.download_file(S3_BUCKET, filename, local_path)
+</pre
+    >
+    <p>
+      Models are cached using <code>@st.cache_resource</code> so they are only
+      downloaded once per app session, not on every user request.
+    </p>
+
+    <h2>6.3 Application (Streamlit)</h2>
+    <p>
+      The web application is built with Streamlit and runs the following
+      workflow on each prediction:
+    </p>
+    <ol>
+      <li>User selects a model from the sidebar</li>
+      <li>User uploads an image or takes a photo</li>
+      <li>
+        Image is resized to 224×224 and preprocessed using the model-specific
+        preprocessing function
+      </li>
+      <li>Model runs inference and returns class probabilities</li>
+      <li>
+        The top prediction is displayed with confidence score, severity,
+        treatment advice, and a probability chart
+      </li>
+    </ol>
+
+    <h2>6.4 Security</h2>
+    <ul>
+      <li>
+        AWS credentials are stored as Streamlit Cloud secrets and injected as
+        environment variables at runtime
+      </li>
+      <li>
+        Credentials are never hardcoded in source code or committed to GitHub
+      </li>
+      <li>
+        IAM user has read-only S3 access — least-privilege principle applied
+      </li>
+      <li>S3 bucket is private — not publicly accessible</li>
+    </ul>
+
+    <h2>6.5 Source Code</h2>
+    <p>
+      The full source code is publicly available on GitHub:<br />
+      <strong
+        >https://github.com/Edward-Ed4/Cassava-Disease-Classification-with-Deep-learning</strong
+      >
+    </p>
+
+    <!-- 7. DEPLOYMENT -->
+    <h1>7. Deployment Process</h1>
+    <ol>
+      <li>
+        Trained three deep learning models locally using Jupyter notebooks
+      </li>
+      <li>Created an AWS account and navigated to the S3 console</li>
+      <li>
+        Created S3 bucket <code>cassava-disease-models</code> in region
+        eu-north-1 (Stockholm)
+      </li>
+      <li>
+        Uploaded three model files to the S3 bucket (51 MB, 280 MB, 29 MB)
+      </li>
+      <li>
+        Created IAM user <code>cassava-app-user</code> with
+        <code>AmazonS3ReadOnlyAccess</code> policy
+      </li>
+      <li>
+        Generated programmatic access keys (Access Key ID + Secret Access Key)
+      </li>
+      <li>
+        Updated <code>cassava_app.py</code> to download models from S3 using
+        boto3 instead of local file paths
+      </li>
+      <li>Updated <code>requirements.txt</code> to include boto3</li>
+      <li>Initialised a Git repository and pushed all code to GitHub</li>
+      <li>Connected the GitHub repository to Streamlit Cloud</li>
+      <li>Set Python version to 3.11 in Streamlit Cloud app settings</li>
+      <li>Added AWS credentials to Streamlit Cloud secrets</li>
+      <li>
+        Deployed the application — Streamlit Cloud installs dependencies and the
+        app downloads models from S3 at startup
+      </li>
+    </ol>
+
+    <!-- 8. CONCEPTS -->
+    <h1>8. Cloud Computing Concepts Demonstrated</h1>
+    <table>
+      <tr>
+        <th>Concept</th>
+        <th>How it is Demonstrated</th>
+      </tr>
+      <tr>
+        <td>Managed Cloud Storage</td>
+        <td>
+          AWS S3 stores ML model files without any server or file system
+          management
+        </td>
+      </tr>
+      <tr>
+        <td>Least-Privilege Access</td>
+        <td>
+          IAM user has read-only S3 access — no unnecessary permissions granted
+        </td>
+      </tr>
+      <tr>
+        <td>Serverless Hosting</td>
+        <td>
+          Streamlit Cloud hosts the app with no server provisioning or
+          management
+        </td>
+      </tr>
+      <tr>
+        <td>Secrets Management</td>
+        <td>
+          AWS credentials injected as environment variables, never in source
+          code
+        </td>
+      </tr>
+      <tr>
+        <td>Continuous Deployment</td>
+        <td>GitHub push automatically triggers redeploy on Streamlit Cloud</td>
+      </tr>
+      <tr>
+        <td>Separation of Concerns</td>
+        <td>
+          Code (GitHub), models (S3), and compute (Streamlit Cloud) on separate
+          platforms
+        </td>
+      </tr>
+      <tr>
+        <td>Pay-as-you-go Storage</td>
+        <td>
+          S3 charges only for storage used — ~$0.01/month for 360 MB of models
+        </td>
+      </tr>
+      <tr>
+        <td>Cloud SDK Integration</td>
+        <td>
+          boto3 Python SDK used to programmatically access AWS S3 from the
+          application
+        </td>
+      </tr>
+      <tr>
+        <td>Global Accessibility</td>
+        <td>
+          Application accessible from any device, anywhere in the world via
+          public URL
+        </td>
+      </tr>
+      <tr>
+        <td>Infrastructure Separation</td>
+        <td>
+          No physical server management — all infrastructure managed by cloud
+          providers
+        </td>
+      </tr>
+    </table>
+
+    <!-- 9. CHALLENGES -->
+    <h1>9. Challenges Encountered</h1>
+
+    <h2>9.1 Python Version Incompatibility</h2>
+    <p>
+      Streamlit Cloud defaulted to Python 3.14.4, which TensorFlow does not yet
+      support. TensorFlow had no compatible wheel files for Python 3.14, causing
+      the dependency installation to fail with an unsatisfiable requirements
+      error.
+    </p>
+    <p>
+      <strong>Resolution:</strong> Set the Python version to 3.11 in the
+      Streamlit Cloud app settings and pinned
+      <code>tensorflow-cpu==2.17.1</code> in <code>requirements.txt</code>.
+    </p>
+
+    <h2>9.2 Model File Size Exceeding GitHub Limits</h2>
+    <p>
+      The three trained model files total approximately 360 MB, with the
+      ResNet50 model alone being 280 MB. GitHub enforces a 100 MB file size
+      limit per file, making it impossible to commit the model files to the
+      repository.
+    </p>
+    <p>
+      <strong>Resolution:</strong> Uploaded the model files to AWS S3 and
+      updated the application to download them programmatically at startup using
+      the boto3 SDK.
+    </p>
+
+    <h2>9.3 AWS Credentials Not Reaching the App</h2>
+    <p>
+      After switching to AWS S3, the application threw a
+      <code>botocore.exceptions.NoCredentialsError</code> on deployment. The app
+      could not find the AWS access keys.
+    </p>
+    <p>
+      <strong>Resolution:</strong> Added the AWS credentials (<code
+        >AWS_ACCESS_KEY_ID</code
+      >
+      and <code>AWS_SECRET_ACCESS_KEY</code>) to the Streamlit Cloud secrets
+      panel. Streamlit injects these as environment variables at runtime, which
+      boto3 reads automatically.
+    </p>
+
+    <h2>9.4 Incorrect Hugging Face Repository ID</h2>
+    <p>
+      During an earlier deployment phase using Hugging Face Hub for model
+      storage, the application threw a <code>RepositoryNotFoundError</code>. The
+      repository ID hardcoded in the app was
+      <code>EdwardEbaju-Ed4/cassava-disease-models</code> but the actual
+      username was <code>Ebaju-Ed4</code>.
+    </p>
+    <p>
+      <strong>Resolution:</strong> Corrected the repository ID in
+      <code>cassava_app.py</code> and pushed the fix to GitHub.
+    </p>
+
+    <!-- 10. LIVE APP -->
+    <h1>10. Live Application</h1>
+    <table>
+      <tr>
+        <th>Resource</th>
+        <th>URL</th>
+      </tr>
+      <tr>
+        <td>Live App (Streamlit Cloud)</td>
+        <td>
+          https://cassava-disease-classification-with-deep-learning-t7jyapv6cayz.streamlit.app
+        </td>
+      </tr>
+      <tr>
+        <td>GitHub Repository</td>
+        <td>
+          https://github.com/Edward-Ed4/Cassava-Disease-Classification-with-Deep-learning
+        </td>
+      </tr>
+      <tr>
+        <td>AWS S3 Bucket</td>
+        <td>cassava-disease-models — eu-north-1 (Stockholm)</td>
+      </tr>
+      <tr>
+        <td>Model Backup (Hugging Face)</td>
+        <td>https://huggingface.co/Ebaju-Ed4/cassava-disease-models</td>
+      </tr>
+    </table>
+
+    <!-- 11. CONCLUSION -->
+    <h1>11. Conclusion</h1>
+    <p>
+      This project successfully demonstrates the design and deployment of a
+      cloud-native machine learning web application using Amazon Web Services.
+      The Cassava Leaf Disease Detection application leverages AWS S3 for
+      scalable cloud object storage of trained model artifacts, AWS IAM for
+      secure least-privilege access control, Streamlit Cloud for serverless
+      application hosting, and GitHub for source control and continuous
+      deployment.
+    </p>
+    <p>
+      The project illustrates key cloud computing concepts including managed
+      services, separation of concerns, secrets management, pay-as-you-go
+      storage, and continuous deployment pipelines. The application is fully
+      functional, publicly accessible from anywhere in the world, and requires
+      zero server management — demonstrating the power of modern cloud platforms
+      for machine learning deployment.
+    </p>
+    <p>
+      The best performing model, ResNet50, achieved 81.5% validation accuracy on
+      the four-class cassava disease classification task. The complete system —
+      from model training to live deployment — showcases a production-grade
+      cloud ML architecture that scales automatically and costs near zero when
+      idle.
+    </p>
+
+    <!-- 12. REFERENCES -->
+    <h1>12. References</h1>
+    <ul>
+      <li>Amazon Web Services Documentation: https://docs.aws.amazon.com</li>
+      <li>Amazon S3 Documentation: https://docs.aws.amazon.com/s3/</li>
+      <li>AWS IAM Documentation: https://docs.aws.amazon.com/iam/</li>
+      <li>
+        boto3 Documentation:
+        https://boto3.amazonaws.com/v1/documentation/api/latest/index.html
+      </li>
+      <li>Streamlit Documentation: https://docs.streamlit.io</li>
+      <li>
+        Streamlit Cloud Deployment:
+        https://docs.streamlit.io/deploy/streamlit-community-cloud
+      </li>
+      <li>
+        TensorFlow Keras Documentation:
+        https://www.tensorflow.org/api_docs/python/tf/keras
+      </li>
+      <li>
+        GitHub Repository:
+        https://github.com/Edward-Ed4/Cassava-Disease-Classification-with-Deep-learning
+      </li>
+    </ul>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      Ebaju Edward &nbsp;|&nbsp; Student No: 2400723929
+      &nbsp;|&nbsp; Cloud Computing Project
+    </div>
+  </body>
+</html>
